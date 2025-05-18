@@ -29,6 +29,51 @@
             <a href="{% url 'login' %}">Inicia sesión</a>
         </p>
     </div>
+      <script>
+  // Función para obtener el csrftoken
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let cookie of cookies) {
+        cookie = cookie.trim();
+        if (cookie.startsWith(name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+
+  const csrftoken = getCookie('csrftoken');
+
+  // Ejemplo: hacer fetch al hacer clic en un botón que tengas
+  // (Asegúrate de tener un botón con id="btnEnviar" o cámbialo)
+  document.addEventListener('DOMContentLoaded', () => {
+    const boton = document.getElementById('btnEnviar');
+    if (boton) {
+      boton.addEventListener('click', () => {
+        fetch('/tu-url/', {
+          method: 'POST',
+          headers: {
+            'X-CSRFToken': csrftoken,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ ejemplo: 'datos' }),
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log('Respuesta del servidor:', data);
+          // Aquí puedes actualizar la UI según la respuesta
+        })
+        .catch(error => {
+          console.error('Error en la petición:', error);
+        });
+      });
+    }
+  });
+</script>
 
 </body>
 </html>

@@ -14,6 +14,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = "django-insecure-87_sbc=r=uhdb7%9t7oa1vw7h_k#cu=uhi)8dk)skax)c@f58k"
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://hotel-portal.onrender.com',
+]
+
+
 DEBUG = True            # ponlo en False en producción
 
 ALLOWED_HOSTS = [

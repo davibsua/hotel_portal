@@ -74,8 +74,9 @@ body {
   transform: scale(1.05);
 }
 
+/* Aquí está el cambio principal: ocultar por defecto */
 .dropdown-content {
-  display: block !important; /* siempre visible */
+  display: none;
   position: absolute;
   background: #34495E;
   min-width: 160px;
@@ -88,6 +89,11 @@ body {
   opacity: 1;
   transition: none;
   z-index: 10;
+}
+
+/* Mostrar desplegable solo al hacer hover sobre .dropdown */
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
 .dropdown-content a {
@@ -192,6 +198,7 @@ p {
     padding: 12px 20px;
   }
 
+  /* En móvil, los desplegables siempre visibles y estáticos */
   .dropdown-content {
     position: static;
     width: 90vw;
