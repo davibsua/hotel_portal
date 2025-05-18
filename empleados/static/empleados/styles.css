@@ -140,72 +140,65 @@ ul li:last-child {
 
 p {
   font-size: 1.1rem;
-
-
-
-
-
-
-ChatGPT Plus
-color: #333;
-margin-top: 6px;
+  color: #333;
+  margin-top: 6px;
 }
 
 /* ---------- Caja usuario en la franja ---------- */
 .user-box {
-position: absolute;
-top: 10px;
-right: 30px;
-display: flex;
-align-items: center;
-gap: 10px;
+  position: absolute;
+  top: 10px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .username {
-color: #F4F4F4;
-font-weight: 600;
-font-size: 1.3rem;
+  color: #F4F4F4;
+  font-weight: 600;
+  font-size: 1.3rem;
 }
 
 .logout-link {
-color: #F4F4F4;
-font-size: 1.8rem;
-transition: color 0.3s;
-text-decoration: none;
+  color: #F4F4F4;
+  font-size: 1.8rem;
+  transition: color 0.3s;
+  text-decoration: none;
 }
 
 .logout-link:hover {
-color: #D1E8E2;
+  color: #D1E8E2;
 }
 
 /* ---------- Ajustes responsive para móviles ---------- */
 @media (max-width: 768px) {
-.dropdown-container {
-flex-direction: column;
-gap: 10px;
-align-items: center;
-}
+  .dropdown-container {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
 
-.dropbtn {
-font-size: 1.2rem;
-padding: 12px 20px;
-}
+  .dropbtn {
+    font-size: 1.2rem;
+    padding: 12px 20px;
+  }
 
-.dropdown-content {
-position: static;
-width: 90vw;
-box-shadow: none;
-border-radius: 0;
-background: #3E5C76;
-}
+  .dropdown-content {
+    position: static;
+    width: 90vw;
+    box-shadow: none;
+    border-radius: 0;
+    background: #3E5C76;
+  }
 
-.dropdown-content a {
-font-size: 1.1rem;
-}
+  .dropdown-content a {
+    font-size: 1.1rem;
+  }
 
-.user-box {
-position: static;
-margin-bottom: 10px;
-justify-content: center;
-}
+  .user-box {
+    position: static;
+    margin-bottom: 10px;
+    justify-content: center;
+  }
 }
