@@ -1,215 +1,211 @@
 /* ---------- Reset general ---------- */
-body{
-  margin:0;
-  padding:0;
-  font-family:'Playfair Display',serif;
-  background:#F4F4F4;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Playfair Display', serif;
+  background: #F4F4F4;
 }
 
 /* ---------- Franja genérica (panel y login) ---------- */
 .franja,
-.auth-franja{                 /* ambas comparten estilo */
-  width:100vw;                /* ocupa todo el ancho */
-  background:#2C3E50;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  margin:0;                   /* sin separación arriba */
+.auth-franja {
+  width: 100vw;
+  background: #2C3E50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
 }
-.franja{height:30vh;}
-.auth-franja{height:18vh;}
 
-.franja h1{
-  color:#fff;
-  font-size:3em;
-  margin:10px 0 30px;
-  text-align:center;
-  transition:letter-spacing .3s,color .3s;
+.franja {
+  height: 30vh;
+  position: relative;
 }
-.franja h1:hover{
-  letter-spacing:2px;
-  color:#D1E8E2;
+
+.auth-franja {
+  height: 18vh;
+}
+
+.franja h1 {
+  color: #fff;
+  font-size: 3em;
+  margin: 10px 0 30px;
+  text-align: center;
+  transition: letter-spacing 0.3s, color 0.3s;
+}
+
+.franja h1:hover {
+  letter-spacing: 2px;
+  color: #D1E8E2;
 }
 
 /* ---------- Menús desplegables (panel) ---------- */
-.dropdown-container{
-  display:flex;
-  gap:20px;
-  flex-wrap:wrap;
-  justify-content:center;
-  margin-top:10px;
+.dropdown-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
 }
-.dropdown{position:relative;}
-.dropbtn{
-  background:transparent;
-  color:#fff;
-  font-size:1.1em;
-  border:none;
-  cursor:pointer;
-  padding:8px 16px;
-  transition:background-color .3s,transform .3s;
+
+.dropdown {
+  position: relative;
 }
-.dropbtn:hover{
-  background:rgba(255,255,255,.1);
-  border-radius:5px;
-  transform:scale(1.05);
+
+.dropbtn {
+  background: transparent;
+  color: #fff;
+  font-size: 1.1em;
+  border: none;
+  cursor: pointer;
+  padding: 8px 16px;
+  transition: background-color 0.3s, transform 0.3s;
 }
-.dropdown-content{
-  display:none;
-  position:absolute;
-  background:#34495E;
-  min-width:160px;
-  top:100%;
-  left:0;
-  border-radius:5px;
-  overflow:hidden;
-  box-shadow:0 2px 6px rgba(0,0,0,.2);
-  opacity:0;
-  transform:translateY(-10px);
-  transition:opacity .3s,transform .3s;
+
+.dropbtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  transform: scale(1.05);
 }
-.dropdown:hover .dropdown-content{
-  display:block;
-  opacity:1;
-  transform:translateY(0);
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: #34495E;
+  min-width: 160px;
+  top: 100%;
+  left: 0;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 10;
 }
-.dropdown-content a{
-  color:#fff;
-  padding:10px 14px;
-  font-size:1.3rem;
-  display:block;
-  text-decoration:none;
-  transition:background-color .3s,padding-left .2s;
+
+.dropdown.active .dropdown-content {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
 }
-.dropdown-content a:hover{
-  background:rgba(62,92,118,.5);
-  padding-left:20px;
+
+.dropdown-content a {
+  color: #fff;
+  padding: 10px 14px;
+  font-size: 1.3rem;
+  display: block;
+  text-decoration: none;
+  transition: background-color 0.3s, padding-left 0.2s;
+}
+
+.dropdown-content a:hover {
+  background: rgba(62, 92, 118, 0.5);
+  padding-left: 20px;
 }
 
 /* ---------- Contenido principal (panel) ---------- */
-h2,h3,h4{
-  color:#3E5C76;
-  margin-bottom:12px;
-  text-align:center;
-  transition:color .3s;
-}
-h2:hover,h3:hover,h4:hover{
-  color:#2C3E50;
-  cursor:default;
-}
-ul{
-  max-width:600px;
-  background:#fff;
-  padding:20px 25px;
-  border-radius:10px;
-  box-shadow:0 8px 16px rgba(0,0,0,.1);
-  list-style:none;
-  margin:30px auto;
-}
-ul li{
-  padding:10px 0;
-  border-bottom:1px solid #ddd;
-  font-size:1.1rem;
-}
-ul li:last-child{border-bottom:none;}
-p{
-  font-size:1.1rem;
-  color:#555;
-  line-height:1.6;
-  text-align:center;
-  margin:0;
-}
-body>*:not(.franja):not(.auth-franja){
-  max-width:900px;
-  width:100%;
-  margin:0 auto;
+h2, h3, h4 {
+  color: #3E5C76;
+  margin-bottom: 12px;
+  text-align: center;
+  transition: color 0.3s;
 }
 
-/* ---------- Usuario + logout (panel) ---------- */
-.user-box{
-  position:absolute;
-  top:15px;
-  right:25px;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-size:1.05rem;
-  color:#fff;
-}
-.username{font-weight:600;}
-.logout-link{
-  color:#fff;
-  font-size:1.3rem;
-  transition:transform .2s,color .2s;
-}
-.logout-link:hover{
-  transform:scale(1.15);
-  color:#D1E8E2;
+h2:hover, h3:hover, h4:hover {
+  color: #2C3E50;
+  cursor: default;
 }
 
-/* ---------- Página de autenticación ---------- */
-.auth-body{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;  /* franja arriba, tarjeta debajo */
-  align-items:center;
-  justify-content:flex-start;
-  background:linear-gradient(135deg,#F4F4F4 0%,#E9EEF4 100%);
+ul {
+  max-width: 600px;
+  background: #fff;
+  padding: 20px 25px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  margin: 30px auto;
 }
 
-/* tarjeta de login */
-.auth-card{
-  margin-top:40px;
-  width:100%;
-  max-width:420px;
-  padding:40px 35px;
+ul li {
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  font-size: 1.1rem;
 }
-.auth-title{
-  margin:0 0 25px;
-  color:#2C3E50;
-  text-align:center;
-}
-.auth-link{
-  margin-top:15px;
-  text-align:center;
-}
-.auth-link a{
-  color:#3E5C76;
-  font-weight:600;
-  text-decoration:none;
-  transition:color .3s;
-}
-.auth-link a:hover{color:#2C3E50;}
 
-/* ---------- Inputs + botón (login) ---------- */
-.auth-form p{margin-bottom:18px;}
-.auth-form input{
-  width:100%;
-  padding:10px 14px;
-  border:2px solid #ccc;
-  border-radius:6px;
-  font-size:1rem;
-  transition:border-color .3s,box-shadow .3s;
+ul li:last-child {
+  border-bottom: none;
 }
-.auth-form input:focus{
-  border-color:#3E5C76;
-  box-shadow:0 0 0 3px rgba(62,92,118,.15);
-  outline:none;
+
+p {
+  font-size: 1.1rem;
+
+
+
+
+
+
+ChatGPT Plus
+color: #333;
+margin-top: 6px;
 }
-.btn-primary{
-  background:linear-gradient(135deg,#3E5C76 0%,#2C3E50 100%);
-  color:#fff;
-  border:none;
-  width:100%;
-  padding:12px 20px;
-  font-size:1.15rem;
-  font-weight:700;
-  border-radius:8px;
-  cursor:pointer;
-  transition:transform .2s,box-shadow .2s;
+
+/* ---------- Caja usuario en la franja ---------- */
+.user-box {
+position: absolute;
+top: 10px;
+right: 30px;
+display: flex;
+align-items: center;
+gap: 10px;
 }
-.btn-primary:hover{
-  transform:translateY(-2px);
-  box-shadow:0 6px 12px rgba(0,0,0,.15);
+
+.username {
+color: #F4F4F4;
+font-weight: 600;
+font-size: 1.3rem;
+}
+
+.logout-link {
+color: #F4F4F4;
+font-size: 1.8rem;
+transition: color 0.3s;
+text-decoration: none;
+}
+
+.logout-link:hover {
+color: #D1E8E2;
+}
+
+/* ---------- Ajustes responsive para móviles ---------- */
+@media (max-width: 768px) {
+.dropdown-container {
+flex-direction: column;
+gap: 10px;
+align-items: center;
+}
+
+.dropbtn {
+font-size: 1.2rem;
+padding: 12px 20px;
+}
+
+.dropdown-content {
+position: static;
+width: 90vw;
+box-shadow: none;
+border-radius: 0;
+background: #3E5C76;
+}
+
+.dropdown-content a {
+font-size: 1.1rem;
+}
+
+.user-box {
+position: static;
+margin-bottom: 10px;
+justify-content: center;
+}
 }
