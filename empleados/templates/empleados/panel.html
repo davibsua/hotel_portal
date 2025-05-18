@@ -105,26 +105,32 @@
     </div>
   </div>
 
-  <h2>Horarios</h2>
-  <ul>
-    {% for horario in horarios %}
-      <li>{{ horario.dia }}: {{ horario.entrada }} - {{ horario.salida }}</li>
-    {% empty %}
-      <li>No tienes horarios asignados</li>
-    {% endfor %}
-  </ul>
+  <main>
+    <section class="horarios">
+      <h2>Horarios</h2>
+      <ul>
+        {% for horario in horarios %}
+          <li>{{ horario.dia }}: {{ horario.entrada }} - {{ horario.salida }}</li>
+        {% empty %}
+          <li>No tienes horarios asignados</li>
+        {% endfor %}
+      </ul>
+    </section>
 
-  <h2>Mensajes recibidos</h2>
-  <ul>
-    {% for mensaje in mensajes %}
-      <li>
-        <strong>{{ mensaje.asunto }}</strong> - de {{ mensaje.remitente.username }} el {{ mensaje.fecha|date:"d/m/Y H:i" }}
-        <p>{{ mensaje.contenido }}</p>
-      </li>
-    {% empty %}
-      <li>No tienes mensajes</li>
-    {% endfor %}
-  </ul>
+    <section class="mensajes">
+      <h2>Mensajes recibidos</h2>
+      <ul>
+        {% for mensaje in mensajes %}
+          <li>
+            <strong>{{ mensaje.asunto }}</strong> - de {{ mensaje.remitente.username }} el {{ mensaje.fecha|date:"d/m/Y H:i" }}
+            <p>{{ mensaje.contenido }}</p>
+          </li>
+        {% empty %}
+          <li>No tienes mensajes</li>
+        {% endfor %}
+      </ul>
+    </section>
+  </main>
 
   <!-- Script para abrir/cerrar dropdown en móviles -->
   <script>
@@ -147,51 +153,51 @@
       });
     });
   </script>
+
   <script>
-  // Función para obtener el csrftoken
-  function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-      const cookies = document.cookie.split(';');
-      for (let cookie of cookies) {
-        cookie = cookie.trim();
-        if (cookie.startsWith(name + '=')) {
-          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-          break;
+    // Función para obtener el csrftoken
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let cookie of cookies) {
+          cookie = cookie.trim();
+          if (cookie.startsWith(name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
         }
       }
+      return cookieValue;
     }
-    return cookieValue;
-  }
 
-  const csrftoken = getCookie('csrftoken');
+    const csrftoken = getCookie('csrftoken');
 
-  // Ejemplo: hacer fetch al hacer clic en un botón que tengas
-  // (Asegúrate de tener un botón con id="btnEnviar" o cámbialo)
-  document.addEventListener('DOMContentLoaded', () => {
-    const boton = document.getElementById('btnEnviar');
-    if (boton) {
-      boton.addEventListener('click', () => {
-        fetch('/tu-url/', {
-          method: 'POST',
-          headers: {
-            'X-CSRFToken': csrftoken,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ ejemplo: 'datos' }),
-        })
-        .then(res => res.json())
-        .then(data => {
-          console.log('Respuesta del servidor:', data);
-          // Aquí puedes actualizar la UI según la respuesta
-        })
-        .catch(error => {
-          console.error('Error en la petición:', error);
+    // Ejemplo: hacer fetch al hacer clic en un botón que tengas
+    document.addEventListener('DOMContentLoaded', () => {
+      const boton = document.getElementById('btnEnviar');
+      if (boton) {
+        boton.addEventListener('click', () => {
+          fetch('/tu-url/', {
+            method: 'POST',
+            headers: {
+              'X-CSRFToken': csrftoken,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ ejemplo: 'datos' }),
+          })
+          .then(res => res.json())
+          .then(data => {
+            console.log('Respuesta del servidor:', data);
+            // Aquí puedes actualizar la UI según la respuesta
+          })
+          .catch(error => {
+            console.error('Error en la petición:', error);
+          });
         });
-      });
-    }
-  });
-</script>
+      }
+    });
+  </script>
 
 </body>
 </html>
