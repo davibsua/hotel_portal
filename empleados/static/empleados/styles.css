@@ -63,6 +63,7 @@ body {
   user-select: none;
 }
 
+/* Botón menú */
 .dropbtn {
   background: transparent;
   color: #fff;
@@ -75,11 +76,14 @@ body {
   user-select: none;
 }
 
-.dropbtn:hover, .dropdown.active > .dropbtn {
+/* Hover y menú activo (clic) */
+.dropbtn:hover,
+.dropdown.active > .dropbtn {
   background: rgba(255, 255, 255, 0.15);
   transform: scale(1.05);
 }
 
+/* Contenido desplegable oculto por defecto */
 .dropdown-content {
   display: none;
   position: absolute;
@@ -93,6 +97,14 @@ body {
   transform: translateX(-50%);
 }
 
+/* En escritorio: mostrar al pasar el cursor */
+@media (hover: hover) and (pointer: fine) {
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+}
+
+/* En móvil: mostrar si está activo */
 .dropdown.active .dropdown-content {
   display: block;
 }

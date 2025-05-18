@@ -198,6 +198,32 @@
       }
     });
   </script>
+    <script>
+  document.querySelectorAll('.dropbtn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      const dropdown = btn.parentElement;
+
+      // Cerrar otros dropdowns abiertos
+      document.querySelectorAll('.dropdown.active').forEach(activeDropdown => {
+        if (activeDropdown !== dropdown) {
+          activeDropdown.classList.remove('active');
+        }
+      });
+
+      // Alternar el dropdown actual
+      dropdown.classList.toggle('active');
+    });
+  });
+
+  // Opcional: cerrar dropdown si haces clic fuera
+  window.addEventListener('click', e => {
+    if (!e.target.matches('.dropbtn')) {
+      document.querySelectorAll('.dropdown.active').forEach(dropdown => {
+        dropdown.classList.remove('active');
+      });
+    }
+  });
+</script>
 
 </body>
 </html>
