@@ -1,0 +1,151 @@
+/* Fuente y fondo general */
+body {
+  margin: 0;
+  padding: 0 20px;
+  font-family: 'Playfair Display', serif;
+  background-color: #F4F4F4;
+  color: #3E5C76;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Títulos generales */
+h1, h2, h3 {
+  color: #2C3E50;
+  margin-bottom: 15px;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+h1:hover, h2:hover, h3:hover {
+  color: #3E5C76;
+  cursor: default;
+}
+
+/* Formularios */
+form {
+  background: white;
+  padding: 25px 30px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  max-width: 400px;
+  width: 100%;
+  margin-bottom: 20px;
+  transition: box-shadow 0.3s ease;
+}
+
+form:hover {
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+
+form p {
+  font-size: 1rem;
+  margin-top: 10px;
+  text-align: center;
+}
+
+form p a {
+  color: #3E5C76;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+form p a:hover {
+  color: #2C3E50;
+  text-decoration: underline;
+}
+
+/* Inputs y labels generados con form.as_p */
+form p {
+  margin-bottom: 15px;
+}
+
+form p label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+form p input, form p select, form p textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: 'Playfair Display', serif;
+  transition: border-color 0.3s ease;
+}
+
+form p input:focus, form p select:focus, form p textarea:focus {
+  border-color: #3E5C76;
+  outline: none;
+}
+
+/* Botones */
+button {
+  background-color: #3E5C76;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #2C3E50;
+  transform: scale(1.05);
+}
+
+/* Listas */
+ul {
+  max-width: 600px;
+  background: white;
+  padding: 20px 25px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  list-style-type: none;
+  margin-bottom: 30px;
+}
+
+ul li {
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  font-size: 1.1rem;
+}
+
+ul li:last-child {
+  border-bottom: none;
+}
+
+/* Mensajes y contenido */
+p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: #555;
+  margin-bottom: 15px;
+  max-width: 700px;
+  text-align: center;
+}
+
+/* Mensajes dentro de listas */
+ul li p {
+  max-width: 600px;
+  margin-top: 5px;
+  color: #444;
+}
+
+/* Centrado del contenido principal */
+body > * {
+  max-width: 900px;
+  width: 100%;
+  margin-bottom: 20px;
+}

@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel del empleado</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
+    <!-- Font Awesome para el icono de logout -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'empleados/styles.css' %}" />
+</head>
+<body>
+    <div class="franja">
+        <!-- Usuario + logout arriba a la derecha -->
+        <div class="user-box">
+            <span class="username">{{ usuario.username }}</span>
+            <a class="logout-link" href="{% url 'login' %}" title="Cerrar sesión">
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </a>
+        </div>
+
+        <h1>Meliá Hotels</h1>
+
+        <div class="dropdown-container">
+            <!-- Menús desplegables -->
+            <div class="dropdown">
+                <button class="dropbtn">Departamentos</button>
+                <div class="dropdown-content">
+                    <a href="#">Cocina</a>
+                    <a href="#">Limpieza</a>
+                    <a href="#">Mantenimiento</a>
+                    <a href="#">Marketing</a>
+                    <a href="#">Seguridad</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropbtn">Turnos y Horarios</button>
+                <div class="dropdown-content">
+                    <a href="#">Horario Semanal</a>
+                    <a href="#">Cambios de turno</a>
+                    <a href="#">Solicitar día libre</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropbtn">Comunicados</button>
+                <div class="dropdown-content">
+                    <a href="#">Avisos de dirección</a>
+                    <a href="#">Eventos del hotel</a>
+                    <a href="#">Cumpleaños del mes</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropbtn">Recursos del personal</button>
+                <div class="dropdown-content">
+                    <a href="#">Manual del empleado</a>
+                    <a href="#">Normas internas</a>
+                    <a href="#">Formación</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropbtn">Incidencias</button>
+                <div class="dropdown-content">
+                    <a href="#">Reportar un problema</a>
+                    <a href="#">Ver historial de incidencias</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropbtn">Reservas internas</button>
+                <div class="dropdown-content">
+                    <a href="#">Solicitar habitación para empleados</a>
+                    <a href="#">Descuento en servicios</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropbtn">Contacto y soporte</button>
+                <div class="dropdown-content">
+                    <a href="#">Recursos Humanos</a>
+                    <a href="#">Mantenimiento</a>
+                    <a href="#">IT / Tecnología</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropbtn">Documentos importantes</button>
+                <div class="dropdown-content">
+                    <a href="#">Nóminas</a>
+                    <a href="#">Contratos</a>
+                    <a href="#">Certificados</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropbtn">Encuestas</button>
+                <div class="dropdown-content">
+                    <a href="#">Mejora del ambiente laboral</a>
+                    <a href="#">Opiniones anónimas</a>
+                </div>
+            </div>
+        </div><!-- / dropdown-container -->
+    </div><!-- / franja -->
+
+    <h2>Horarios</h2>
+    <ul>
+        {% for horario in horarios %}
+            <li>{{ horario.dia }}: {{ horario.entrada }} - {{ horario.salida }}</li>
+        {% empty %}
+            <li>No tienes horarios asignados</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Mensajes recibidos</h2>
+    <ul>
+        {% for mensaje in mensajes %}
+            <li>
+                <strong>{{ mensaje.asunto }}</strong> - de {{ mensaje.remitente.username }} el {{ mensaje.fecha|date:"d/m/Y H:i" }}
+                <p>{{ mensaje.contenido }}</p>
+            </li>
+        {% empty %}
+            <li>No tienes mensajes</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
