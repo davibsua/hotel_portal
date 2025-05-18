@@ -7,6 +7,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center; /* Centra todo horizontalmente */
+  position: relative;
 }
 
 /* ---------- Franja genérica (panel y login) ---------- */
@@ -20,11 +21,11 @@ body {
   justify-content: center;
   margin: 0;
   text-align: center; /* Centra texto dentro */
+  position: relative;
 }
 
 .franja {
   height: 30vh;
-  position: relative;
 }
 
 .auth-franja {
@@ -62,7 +63,7 @@ body {
   color: #fff;
   font-size: 1.1em;
   border: none;
-  cursor: pointer;
+  cursor: default; /* ya no es clickable */
   padding: 8px 16px;
   transition: background-color 0.3s, transform 0.3s;
 }
@@ -74,25 +75,19 @@ body {
 }
 
 .dropdown-content {
-  display: none;
+  display: block !important; /* siempre visible */
   position: absolute;
   background: #34495E;
   min-width: 160px;
   top: 100%;
   left: 50%;
-  transform: translateX(-50%) translateY(-10px);
+  transform: translateX(-50%) translateY(0);
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  opacity: 0;
-  transition: opacity 0.3s, transform 0.3s;
-  z-index: 10;
-}
-
-.dropdown.active .dropdown-content {
-  display: block;
   opacity: 1;
-  transform: translateX(-50%) translateY(0);
+  transition: none;
+  z-index: 10;
 }
 
 .dropdown-content a {
@@ -156,8 +151,7 @@ p {
 .user-box {
   position: absolute;
   top: 10px;
-  right: 50%;
-  transform: translateX(50%);
+  right: 30px; /* Arriba derecha, separado */
   display: flex;
   align-items: center;
   gap: 10px;
@@ -174,6 +168,7 @@ p {
   font-size: 1.8rem;
   transition: color 0.3s;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .logout-link:hover {
@@ -204,6 +199,7 @@ p {
     border-radius: 0;
     background: #3E5C76;
     transform: none !important;
+    display: block !important;
   }
 
   .dropdown-content a {
