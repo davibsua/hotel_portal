@@ -25,7 +25,18 @@ SECRET_KEY = 'django-insecure-87_sbc=r=uhdb7%9t7oa1vw7h_k#cu=uhi)8dk)skax)c@f58k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+import os
+
+ALLOWED_HOSTS = [
+    "hotel-portal.onrender.com",   # dominio Render
+    "localhost", "127.0.0.1",      # para pruebas locales
+]
+
+# ‑‑ opción más flexible: leer de variable de entorno ‑‑
+extra_hosts = os.environ.get("EXTRA_ALLOWED_HOSTS", "")
+if extra_hosts:
+    ALLOWED_HOSTS += [h.strip() for h in extra_hosts.split(",")]
+
 
 
 # Application definition
@@ -146,3 +157,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),  # Solo si existe esta carpeta
 ]
+
+
+import dj_database_url, os
+DATABASES = {
+    "default": dj_database_url.config(
+        default=os.environ["DATABASE_URL"], conn_max_age=600, ssl_require=True
+    )
+}
+
+
+MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
+STATIC_ROOT = BASE_DIR / "staticfiles"
