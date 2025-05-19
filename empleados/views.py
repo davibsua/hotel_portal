@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
-from .models import Usuario, Horario, Mensaje
+from django.shortcuts import render, redirect
+
+from .models import Horario, Mensaje
+
 
 def login_view(request):
     if request.method == 'POST':
@@ -39,7 +41,7 @@ def registro_view(request):
         form = RegistroUsuarioForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')  # después de registrarse, redirigir a login
+            return redirect('login')
     else:
         form = RegistroUsuarioForm()
     return render(request, 'empleados/registro.html', {'form': form})

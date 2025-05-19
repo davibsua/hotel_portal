@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <title>Panel del empleado</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
-  <!-- Font Awesome para iconos -->
+  <!-- Font Awesome para  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="{% static 'empleados/styles.css' %}" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -200,7 +200,7 @@
   </script>
     <script>
   document.querySelectorAll('.dropbtn').forEach(btn => {
-    btn.addEventListener('click', e => {
+    btn.addEventListener('click', () => {
       const dropdown = btn.parentElement;
 
       // Cerrar otros dropdowns abiertos
