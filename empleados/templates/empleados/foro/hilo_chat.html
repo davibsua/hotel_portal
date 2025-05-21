@@ -1,0 +1,33 @@
+{% extends "empleados/base.html" %}
+
+{% block title %}Chat{% endblock %}
+
+{% block content %}
+    <h2>
+        Chat con
+        {% for participante in hilo.participantes.all %}
+            {% if participante != request.user %}
+                {{ participante.username }}
+            {% endif %}
+        {% endfor %}
+    </h2>
+
+    <div class="mensajes-chat" style="margin-bottom: 2em;">
+    {% for mensaje in mensajes %}
+      <div style="margin: 0.5em 0; {% if mensaje.remitente == request.user %}text-align: right;{% endif %}">
+        <strong>{{ mensaje.remitente.username }}</strong>:
+        <span>{{ mensaje.texto }}</span><br>
+        <small>{{ mensaje.enviado|date:"d/m/Y H:i" }}</small>
+      </div>
+    {% empty %}
+      <p>No hay mensajes aún en este chat.</p>
+    {% endfor %}
+  </div>
+
+   <form method="post">
+       {% csrf_token %}
+       {{ form.as_p }}
+       <button type="submit">Enviar</button>
+   </form>
+    <p><a href="{% url 'hilos_chat' %}">← Volver a mis chats</a></p>
+{% endblock %}

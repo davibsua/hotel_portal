@@ -1,0 +1,26 @@
+{% extends "empleados/base.html" %}
+
+{% block title %}Chats privados{% endblock %}
+{% block content %}
+    <h2>Mis chats privados</h2>
+
+    {% if hilos %}
+        <ul>
+            {% for hilo in hilos %}
+            <li>
+                <a href="{% url 'hilo_chat' hilo.id %}">
+                    Chats:
+                    {% for participante in hilo.participantes.all %}
+                        {% if participante != request.user %}
+                            {{ participante.username }}
+                        {% endif %}
+                    {% endfor %}
+
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No tienes chats abiertos</p>
+    {% endif %}
+{% endblock %}

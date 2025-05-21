@@ -130,6 +130,27 @@
         {% endfor %}
       </ul>
     </section>
+    <section class="comunicaciones">
+        <h2>Comunicaciones</h2>
+        <ul>
+            <li>
+                {% if usuario.departamento %}
+                  <li>
+                    <a href="{% url 'tablon_departamento' usuario.departamento.id %}">
+                      Tablón de {{ usuario.departamento.nombre }}
+                    </a>
+                  </li>
+                {% else %}
+                  <li>No tienes departamento asignado</li>
+                {% endif %}
+            <li>
+                <a href="{% url 'hilos_chat' %}">
+                    Ver chats privados
+                </a>
+
+            </li>
+        </ul>
+    </section>
   </main>
 
   <!-- Script para abrir/cerrar dropdown en móviles -->

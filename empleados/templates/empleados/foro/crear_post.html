@@ -1,0 +1,13 @@
+{% extends "empleados/base.html" %}
+
+{% block title %}Crear Post - {{ departamento.nombre }}{% endblock %}
+
+{% block content %}
+    <h2>Crear post en el tablón de {{ departamento.nombre }}</h2>
+    <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Pulblicar</button>
+    </form>
+    <p><a href="{% url 'tablon_departamento' departamento.id %}">Volver al tablón</a></p>
+{% endblock %}

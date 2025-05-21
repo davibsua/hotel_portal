@@ -1,0 +1,38 @@
+{% extends "empleados/base.html" %}
+{% load static %}
+
+{% block title %}Tablón – {{ departamento.nombre }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'empleados/styles.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="contenedor">
+    <h2 class="seccion-titulo">Tablón de {{ departamento.nombre }}</h2>
+
+    {% if user %}
+        <a href="{% url 'crear_post' departamento.id %}" class="btn-primary">+ Nuevo post</a>
+    {% endif %}
+
+    <ul class="lista-posts">
+        {% for post in posts %}
+        <li class="card">
+            <h3>{{ post.titulo }}</h3>
+            <small>
+                {{ post.creado|date:"d/m/Y H:i" }} – {{ post.autor.get_full_name|default:post.autor.username }}
+            </small>
+            <p>{{ post.cuerpo|linebreaks }}</p>
+        </li>
+        {% empty %}
+        <li>No hay anuncios en este departamento todavia.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'panel' %}" class="btn-secundario">←Volver al panel</a>
+</div>
+
+    <p>Usuario logueado: {{ user.username }}</p>
+    <p>Jefe del departamento: {{ departamento.jefe.username }}</p>
+
+{% endblock %}

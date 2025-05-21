@@ -18,11 +18,35 @@
     <div class="auth-card contenido-principal">
         <h2 class="auth-title">Crear cuenta nueva</h2>
 
-        <form method="post" class="auth-form">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn-primary">Registrarse</button>
-        </form>
+        <form method="post">
+    {% csrf_token %}
+    <label for="id_username">Usuario:</label>
+    {{ form.username }}
+
+    <label for="id_first_name">Nombre:</label>
+    {{ form.first_name }}
+
+    <label for="id_last_name">Apellidos:</label>
+    {{ form.last_name }}
+
+    <label for="id_email">Email:</label>
+    {{ form.email }}
+
+    <label for="id_rol">Rol:</label>
+    {{ form.rol }}
+
+    <label for="id_departamento">Departamento:</label>
+    {{ form.departamento }}
+
+    <label for="id_password1">Contraseña:</label>
+    {{ form.password1 }}
+
+    <label for="id_password2">Confirmar contraseña:</label>
+    {{ form.password2 }}
+
+    <button type="submit">Registrarse</button>
+</form>
+
 
         <p class="auth-link">
             ¿Ya tienes cuenta?
@@ -65,7 +89,7 @@
         .then(res => res.json())
         .then(data => {
           console.log('Respuesta del servidor:', data);
-          // Aquí puedes actualizar la UI según la respuesta
+
         })
         .catch(error => {
           console.error('Error en la petición:', error);
