@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.contrib.auth import get_user_model
 
 
 # ───────────────────────────────
@@ -122,3 +123,13 @@ class MensajeChat(models.Model):
         return f"{self.remitente}: {self.texto[:30]}..."
 
 
+
+Usuario = get_user_model()
+
+class DocumentoPDF(models.Model):
+    titulo = models.CharField(max_length=100)
+    archivo = models.FileField(upload_to="pdfs")
+    subido_por = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    fecha_subida = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.titulo

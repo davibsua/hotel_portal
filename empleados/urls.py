@@ -18,4 +18,8 @@ urlpatterns = [
 
     path('chat/<int:hilo_id>/', views.hilo_chat, name='hilo_chat'),
     path('chat/iniciar/<int:usuario_id>/', views.iniciar_chat_privado, name='iniciar_chat'),
+    path('borrar_post/<int:post_id>/', views.borrar_post, name='borrar_post'),
+    path('subir-pdf/', views.subir_pdf, name='subir_pdf'),
+    path('lista_pdfs/', views.lista_pdfs, name='lista_pdfs'),
+
 ]

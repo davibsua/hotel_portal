@@ -4,6 +4,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
 
+from .forms import DocumentoPDFForm
+from .models import DocumentoPDF
 
 # formularios
 from .forms import RegistroUsuarioForm, PostTablonForm, MensajeChatForm
@@ -14,21 +16,33 @@ from .models import (
     Departamento,
     HiloChat,
     Usuario,
+    PostTablon
 )
 
+
+@login_required
+def borrar_post(request, post_id):
+    post = get_object_or_404(PostTablon, id=post_id) #crea variable post/publicacion en la vista  y la obtiene con un post
+    if request.user == post.departamento.jefe: #mira si el usuario es exactamente el jefe del departamento
+        departamento_id = post.departamento.id #crea la variable departamento id(1-4) y lo coge de la api con el post
+        post.delete()  #borra la publicacion
+        return redirect('tablon_departamento', departamento_id=departamento_id) #si el usuario es el jefe te devuelve al tablon sin el mensaje
+
+    return redirect('tablon_departamento', departamento_id=post.departamento.id) #el usuario no es el jefe y no borra el mensaje
 
 # ────────────────────────────────────
 # 1. Tablón de anuncios por departamento
 # ────────────────────────────────────
 @login_required
 def tablon_departamento(request, departamento_id):
-    departamento = get_object_or_404(Departamento, id=departamento_id)
+    departamento = get_object_or_404(Departamento, id=departamento_id) #crea la variable departamento y obtiene que departamento es de la api
 
-    # El usuario debe pertenecer al mismo departamento
+
+    # El usuario debe pertenecer al mismo departamento si no lo es no da acceso
     if request.user.departamento != departamento:
         return HttpResponseForbidden("No tienes permiso para ver este tablón.")
 
-    posts = departamento.posts.all()  # ordering ya está en Meta
+    posts = departamento.posts.all()  #
     user = request.user
     return render(
         request,
@@ -115,6 +129,7 @@ def iniciar_chat_privado(request, usuario_id):
 # 3. Autenticación y panel actual
 # ────────────────────────────────────
 def login_view(request):
+    #
     form = AuthenticationForm(request, data=request.POST or None)
     if request.method == "POST" and form.is_valid():
         login(request, form.get_user())
@@ -147,3 +162,21 @@ def registro_view(request):
         return redirect("login")
     return render(request, "empleados/registro.html", {"form": form})
 
+
+@login_required
+def subir_pdf(request):
+    if request.method == "POST":
+        form = DocumentoPDFForm(request.POST, request.FILES)
+        if form.is_valid():
+            documento = form.save(commit=False)
+            documento.save()
+            return redirect("lista_pdfs")
+    else:
+        form = DocumentoPDFForm()
+
+    return render(request, 'empleados/subir_pdf.html', {'form': form})
+
+@login_required
+def lista_pdfs(request):
+    documentos = DocumentoPDF.objects.all()
+    return render(request, 'empleados/lista_pdfs.html',{'documentos': documentos})

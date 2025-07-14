@@ -18,6 +18,10 @@
         <strong>{{ mensaje.remitente.username }}</strong>:
         <span>{{ mensaje.texto }}</span><br>
         <small>{{ mensaje.enviado|date:"d/m/Y H:i" }}</small>
+
+        {% if mensaje.remitente == request.user %}
+
+        {% endif %}
       </div>
     {% empty %}
       <p>No hay mensajes aún en este chat.</p>

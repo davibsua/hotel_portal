@@ -1,0 +1,22 @@
+{% extends "empleados/base.html" %}
+{% load static %}
+{% block content %}
+<div class="subir-pdf-container">
+    <div class="subir-pdf-formulario">
+        <h2 class="titulo-subida">Subir archivos PDF</h2>
+        <p class="descripcion-subida">Solo se permiten archivos en formato <strong>.pdf</strong></p>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="campo-formulario">
+                <label for="id_titulo">Título del documento</label>
+                <input type="text" name="titulo" id="id_titulo" required>
+
+            </div>
+            <div class="boton-contenedor">
+                <button type="submit">Subir PDF</button>
+            </div>
+            <a href="{% url 'lista_pdfs' %}">Lista pdf</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

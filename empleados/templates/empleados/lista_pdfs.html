@@ -1,0 +1,11 @@
+{% extends "empleados/base.html" %}
+
+{% block content %}
+{% load static %}
+<h2>Documentos Subidos</h2>
+<ul>
+    {% for doc in documentos %}
+        <li><a href="{{ doc.archivo.url }}" target="_blank">{{ doc.titulo }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -3,6 +3,7 @@ from .models import PostTablon, MensajeChat, Usuario, Departamento
 from django.contrib.auth.forms import UserCreationForm
 from typing import cast
 from django.db.models import QuerySet
+from .models import DocumentoPDF
 
 class RegistroUsuarioForm(UserCreationForm):
     departamento = forms.ModelChoiceField(
@@ -30,3 +31,8 @@ class MensajeChatForm(forms.ModelForm):
         widgets = {
             "texto": forms.Textarea(attrs={"rows": 2, "class": "form-control", "placeholder": "Escribe tu mensaje…"}),
         }
+
+class DocumentoPDFForm(forms.ModelForm):
+    class Meta:
+        model = DocumentoPDF
+        fields = ['titulo', 'archivo']

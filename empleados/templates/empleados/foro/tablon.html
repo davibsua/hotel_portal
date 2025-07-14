@@ -11,7 +11,7 @@
 <div class="contenedor">
     <h2 class="seccion-titulo">Tablón de {{ departamento.nombre }}</h2>
 
-    {% if user %}
+    {% if user == departamento.jefe %}
         <a href="{% url 'crear_post' departamento.id %}" class="btn-primary">+ Nuevo post</a>
     {% endif %}
 
@@ -23,16 +23,24 @@
                 {{ post.creado|date:"d/m/Y H:i" }} – {{ post.autor.get_full_name|default:post.autor.username }}
             </small>
             <p>{{ post.cuerpo|linebreaks }}</p>
+
+            {% if user == departamento.jefe %}
+            <form action="{% url 'borrar_post' post.id %}" method="post" style="display:inline;" onsubmit="return confirm('¿Estás seguro de que quieres borrar este post?');">
+                {% csrf_token %}
+                <button type="submit" title="Eliminar post" class="borrar-btn">
+                    🗑️ Borrar
+                </button>
+            </form>
+            {% endif %}
         </li>
         {% empty %}
-        <li>No hay anuncios en este departamento todavia.</li>
+        <li>No hay anuncios en este departamento todavía.</li>
         {% endfor %}
     </ul>
 
-    <a href="{% url 'panel' %}" class="btn-secundario">←Volver al panel</a>
+    {% if user == departamento.jefe %}
+        <a href="{% url 'subir_pdf' %}" class="btn-secundario">Subir PDF</a>
+    {% endif %}
+    <a href="{% url 'panel' %}" class="btn-secundario">← Volver al panel</a>
 </div>
-
-    <p>Usuario logueado: {{ user.username }}</p>
-    <p>Jefe del departamento: {{ departamento.jefe.username }}</p>
-
 {% endblock %}
